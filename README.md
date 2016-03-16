@@ -19,7 +19,7 @@ Example run:
 
   To run tests:
 
-    ./gradlew tests
+    ./gradlew test
 
 Clock representation:
 -   "0" - Lamp is off
