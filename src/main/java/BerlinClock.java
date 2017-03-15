@@ -11,6 +11,9 @@ public class BerlinClock {
 
     private String formattedTime;
     private static final String NEW_LINE = System.getProperty("line.separator");
+    private static final String NO_TIME_ERROR = "No time provided";
+    private static final String INVALID_TIME_ERROR = "Invalid time provided.";
+    private static final String NUMERIC_TIME_ERROR = "Time values must be numeric.";
 
     /**
      * Create a new BerlinClock instance with a string representing time.
@@ -19,15 +22,19 @@ public class BerlinClock {
      */
     public BerlinClock(String time) {
 
-        if(time == null) throw new IllegalArgumentException("No time provided.");
+        if(time == null) throw new IllegalArgumentException(NO_TIME_ERROR);
 
         String[] times = time.split(":", 3);
 
-        if(times.length != 3) throw new IllegalArgumentException("Invalid time provided.");
+        if(times.length != 3) throw new IllegalArgumentException(INVALID_TIME_ERROR);
 
-        int hours = Integer.parseInt(times[0]);
-        int minutes = Integer.parseInt(times[1]);
-        int seconds = Integer.parseInt(times[2]);
+        try {
+            int hours = Integer.parseInt(times[0]);
+            int minutes = Integer.parseInt(times[1]);
+            int seconds = Integer.parseInt(times[2]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NUMERIC_TIME_ERROR);
+        }
 
         if (hours < 0 || hours > 23) throw new IllegalArgumentException("Hours out of bounds.");
         if (minutes < 0 || minutes > 59) throw new IllegalArgumentException("Minutes out of bounds.");
