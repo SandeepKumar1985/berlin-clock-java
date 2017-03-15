@@ -28,10 +28,12 @@ public class BerlinClock {
 
         if(times.length != 3) throw new IllegalArgumentException(INVALID_TIME_ERROR);
 
+        int hours, minutes, seconds = 0;
+        
         try {
-            int hours = Integer.parseInt(times[0]);
-            int minutes = Integer.parseInt(times[1]);
-            int seconds = Integer.parseInt(times[2]);
+            hours = Integer.parseInt(times[0]);
+            minutes = Integer.parseInt(times[1]);
+            seconds = Integer.parseInt(times[2]);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMERIC_TIME_ERROR);
         }
